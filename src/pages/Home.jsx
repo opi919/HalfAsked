@@ -10,9 +10,14 @@ function Home() {
   useEffect(() => {
     const initialHalfQuestions = [
       // Add your list of half questions here
-      "What is the capital of...",
-      "The best way to...",
-      "Can you explain...",
+      "When are you ....?",
+      "Does it always say ...?",
+      "How have you ...?",
+      "Why does ...?",
+      "When have you ...?",
+      "The best way to...?",
+      "Can you explain...?",
+      "Who can you ...?"
     ]
     setHalfQuestions(initialHalfQuestions)
   }, [])
