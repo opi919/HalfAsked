@@ -7,8 +7,8 @@ function Home() {
   const [currentQuestion, setCurrentQuestion] = useState(null)
   const [halfQuestions, setHalfQuestions] = useState([])
   const [turn, setTurn] = useState(1) // 1 for User 1, 2 for User 2
-  const [user1Name, setUser1Name] = useState("user1")
-  const [user2Name, setUser2Name] = useState("user2")
+  const [user1Name, setUser1Name] = useState("User1")
+  const [user2Name, setUser2Name] = useState("User2")
 
   useEffect(() => {
     const initialHalfQuestions = [
@@ -88,11 +88,11 @@ function Home() {
           <input type="text" id="qus" placeholder="Complete the question" onChange={(e) => setCurrentQuestion({ text: e.target.value, answer: "" })} onKeyDown={handleEnterKeyPress} />
           {currentQuestion.text && (
             <>
-              <p>
+              <p className="m-0 mb-1 mt-3">
                 <b>Answer:</b> {currentQuestion.answer}
               </p>
               <textarea id="answerInput" placeholder="Enter your answer..." onChange={(e) => setCurrentQuestion({ ...currentQuestion, answer: e.target.value })} onKeyDown={handleEnterKeyPress} />
-              <p>
+              <p className="m-0 mt-3 mb-1">
                 <b>Ask another half question:</b>
               </p>
               <input type="text" id="halfQuestionInput" onChange={(e) => handleHalfQuestion(e.target.value)} placeholder="Ask a question..." onKeyDown={handleEnterKeyPress} />

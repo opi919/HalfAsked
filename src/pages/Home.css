@@ -12,7 +12,8 @@
 
 .completed-questions {
   display: flex;
-  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  padding-top: 2rem;
 }
 
 .user-1-questions {
@@ -26,7 +27,7 @@
 
 .current-question {
   margin-top: 20px;
-  padding: 10px;
+  padding: 2rem;
   border: 1px solid #ccc;
 }
 
