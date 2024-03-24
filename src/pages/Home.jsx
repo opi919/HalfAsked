@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import "./Home.css"
+import LOGO from "../assets/logo.png"
 
 function Home() {
   const [completedQuestions, setCompletedQuestions] = useState([])
@@ -122,15 +123,18 @@ function Home() {
     <div className="question-list">
       <div className="user-names text-center">
         <div>
-          <label for="user1">User 1 Name:</label>
+          <img src={LOGO} alt="chat" className="half-logo" />
+        </div>
+        <div>
+          <label for="user1">User 1's Name:</label>
           <input type="text" id="user1" onChange={(e) => setUser1Name(e.target.value)} />
         </div>
         <div className="mt-2">
-          <label for="user2">User 2 Name:</label>
+          <label for="user2">User 2's Name:</label>
           <input type="text" id="user2" onChange={(e) => setUser2Name(e.target.value)} />
         </div>
 
-        <div className="mt-3">
+        <div className="mt-4">
           {!currentQuestion && (
             <button onClick={selectRandomHalfQuestion} className="btn btn-primary">
               Start Conversation

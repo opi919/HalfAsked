@@ -5,6 +5,11 @@
   font-family: Arial, sans-serif;
 }
 
+.half-logo {
+  width: 20rem;
+  margin-bottom: -7rem;
+}
+
 .completed-questions {
   display: flex;
   border-bottom: 1px solid #ccc;
