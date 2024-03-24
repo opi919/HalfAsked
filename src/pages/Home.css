@@ -36,3 +36,32 @@
 .current-question h2 {
   margin-top: 0;
 }
+
+.user-names {
+  margin-bottom: 20px;
+}
+
+.user-names label {
+  margin-right: 10px;
+}
+
+.user-names input {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.start-conversation {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.start-conversation:hover {
+  background-color: #0056b3;
+}

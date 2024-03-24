@@ -6,6 +6,8 @@ function Home() {
   const [currentQuestion, setCurrentQuestion] = useState(null)
   const [halfQuestions, setHalfQuestions] = useState([])
   const [turn, setTurn] = useState(1) // 1 for User 1, 2 for User 2
+  const [user1Name, setUser1Name] = useState("user1")
+  const [user2Name, setUser2Name] = useState("user2")
 
   useEffect(() => {
     const initialHalfQuestions = [
@@ -17,7 +19,7 @@ function Home() {
       "When have you ...?",
       "The best way to...?",
       "Can you explain...?",
-      "Who can you ...?"
+      "Who can you ...?",
     ]
     setHalfQuestions(initialHalfQuestions)
   }, [])
@@ -39,15 +41,17 @@ function Home() {
   }
 
   const selectRandomHalfQuestion = () => {
+    //remove usernames input fields
+    document.querySelector(".user-names").style.display = "none"
     const randomIndex = Math.floor(Math.random() * halfQuestions.length)
     const randomHalfQuestion = halfQuestions[randomIndex]
     setCurrentQuestion({ text: randomHalfQuestion, answer: "" })
   }
 
   const renderCompletedQuestions = () => (
-    <div className="completed-questions">
+    <div className="completed-questions mt-5">
       <div className="user-1-questions">
-        <h2>User 1's Questions</h2>
+        <h2>{user1Name}'s Questions</h2>
         {completedQuestions.map(
           (question, index) =>
             question.user === 1 && (
@@ -59,7 +63,7 @@ function Home() {
         )}
       </div>
       <div className="user-2-questions">
-        <h2>User 2's Questions</h2>
+        <h2>{user2Name}'s Questions</h2>
         {completedQuestions.map(
           (question, index) =>
             question.user === 2 && (
@@ -75,7 +79,7 @@ function Home() {
 
   const renderCurrentQuestion = () => {
     if (currentQuestion) {
-      const userLabel = turn === 1 ? "User 1" : "User 2"
+      const userLabel = turn === 1 ? user1Name : user2Name
       return (
         <div className={`current-question user-${turn}`}>
           <h2>{userLabel}'s Turn</h2>
@@ -88,7 +92,7 @@ function Home() {
               </p>
               <textarea id="answerInput" placeholder="Enter your answer..." onChange={(e) => setCurrentQuestion({ ...currentQuestion, answer: e.target.value })} onKeyDown={handleEnterKeyPress} />
               <p>
-                <b>Ask a new question:</b>
+                <b>Ask another half question:</b>
               </p>
               <input type="text" id="halfQuestionInput" onChange={(e) => handleHalfQuestion(e.target.value)} placeholder="Ask a question..." onKeyDown={handleEnterKeyPress} />
             </>
@@ -116,9 +120,27 @@ function Home() {
 
   return (
     <div className="question-list">
-      {!currentQuestion && <button onClick={selectRandomHalfQuestion}>Start Conversation</button>}
-      {completedQuestions.length > 0 && renderCompletedQuestions()}
+      <div className="user-names text-center">
+        <div>
+          <label for="user1">User 1 Name:</label>
+          <input type="text" id="user1" onChange={(e) => setUser1Name(e.target.value)} />
+        </div>
+        <div className="mt-2">
+          <label for="user2">User 2 Name:</label>
+          <input type="text" id="user2" onChange={(e) => setUser2Name(e.target.value)} />
+        </div>
+
+        <div className="mt-3">
+          {!currentQuestion && (
+            <button onClick={selectRandomHalfQuestion} className="btn btn-primary">
+              Start Conversation
+            </button>
+          )}
+        </div>
+      </div>
+
       {renderCurrentQuestion()}
+      {completedQuestions.length > 0 && renderCompletedQuestions()}
     </div>
   )
 }
